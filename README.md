@@ -249,7 +249,7 @@ Inspiração Site Recitas - Consumo da API
 
 # Conclusão
 
-Projeto desenvolvido como atividade prática de desenvolvimento web utilizando:
+Projeto desenvolvido como prova, utilizando:
 
 - Node.js
 - Express
