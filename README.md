@@ -197,22 +197,22 @@ Inspiração Site Recitas - Consumo da API
 
 ## Tela Principal
 
-![Tela Principal](./prints/tela-principal.png)
+![Tela Principal](./wireframes/inicio.png)
 
 
 ## Cadastro de Quarto
 
-![Cadastro de Quarto](./prints/cadastro-quarto.png)
+![Cadastro de Quarto](./wireframes/quarto.png)
 
 
 ## Tela de Reservas
 
-![Tela de Reservas](./prints/tela-reservas.png)
+![Tela de Reservas](./wireframes/reserva.png)
 
 
 ## Cadastro de Reserva
 
-![Cadastro de Reserva](./prints/cadastro-reserva.png)
+![Cadastro de Reserva](./wireframes/lista.png)
 
 ---
 
@@ -240,7 +240,7 @@ Inspiração Site Recitas - Consumo da API
 
 ---
 
-# 👨Desenvolvedora
+# Desenvolvedora
 
 Projeto desenvolvido como atividade prática de desenvolvimento web utilizando:
 
