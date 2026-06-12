@@ -247,7 +247,7 @@ Inspiração Site Recitas - Consumo da API
 ---
 
 
-# Desenvolvedora
+# Conclusão
 
 Projeto desenvolvido como atividade prática de desenvolvimento web utilizando:
 
@@ -260,5 +260,5 @@ Projeto desenvolvido como atividade prática de desenvolvimento web utilizando:
 - JavaScript
 
 
-Por Pietra Moroni
+Desenvolvido Por Pietra Moroni - 2º DES B 
 ---
