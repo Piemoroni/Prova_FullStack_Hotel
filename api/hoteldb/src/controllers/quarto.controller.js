@@ -1,51 +1,95 @@
 const prisma = require("../data/prisma");
 
 const cadastrar = async (req, res) => {
-    const data = req.body;
+    try {
 
-    const item = await prisma.quarto.create({
-        data
-    });
+        const quarto = await prisma.quarto.create({
+            data: req.body
+        });
 
-    res.json(item).status(201).end();
+        res.status(201).json(quarto);
+
+    } catch (err) {
+        res.status(500).json(err);
+    }
 };
 
 const listar = async (req, res) => {
-    const lista = await prisma.quarto.findMany();
+    try {
 
-    res.json(lista).status(200).end();
+        const quartos = await prisma.quarto.findMany();
+
+        res.status(200).json(quartos);
+
+    } catch (err) {
+        res.status(500).json(err);
+    }
 };
 
 const buscar = async (req, res) => {
-    const { id } = req.params;
-    
-    const item = await prisma.quarto.findUnique({
-        where: { id : Number(id) }
-    });
+    try {
 
-    res.json(item).status(200).end();
+        const { id } = req.params;
+
+        const quarto = await prisma.quarto.findUnique({
+
+            where: {
+                id: Number(id)
+            },
+
+            include: {
+                reservas: true
+            }
+
+        });
+
+        res.status(200).json(quarto);
+
+    } catch (err) {
+        res.status(500).json(err);
+    }
 };
 
 const atualizar = async (req, res) => {
-    const { id } = req.params;
-    const dados = req.body;
-    
-    const item = await prisma.quarto.update({
-        where: { id : Number(id) },
-        data: dados
-    });
+    try {
 
-    res.json(item).status(200).end();
+        const { id } = req.params;
+
+        const quarto = await prisma.quarto.update({
+
+            where: {
+                id: Number(id)
+            },
+
+            data: req.body
+
+        });
+
+        res.status(200).json(quarto);
+
+    } catch (err) {
+        res.status(500).json(err);
+    }
 };
 
 const excluir = async (req, res) => {
+
     const { id } = req.params;
-    
-    const item = await prisma.quarto.delete({
-        where: { id : Number(id) }
+
+    await prisma.reserva.deleteMany({
+        where: {
+            quartoId: Number(id)
+        }
     });
 
-    res.json(item).status(200).end();
+    const quarto = await prisma.quarto.delete({
+        where: {
+            id: Number(id)
+        }
+    });
+
+    res.status(200).json(quarto);
+
 };
 
 module.exports = {
@@ -54,4 +98,4 @@ module.exports = {
     buscar,
     atualizar,
     excluir
-}
+};

@@ -36,12 +36,41 @@ header h1 {
     font-size: 28px;
 }
 
-main {
+/* MENU LATERAL */
+
+.container {
+    display: flex;
     width: 100%;
+    min-height: calc(100vh - 78px);
+}
+
+aside {
+    width: 220px;
+    background-color: var(--azulEscuro);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+aside h2 {
+    color: var(--branco);
+    margin-bottom: 10px;
+}
+
+aside button {
+    width: 100%;
+}
+
+/* CONTEÚDO */
+
+main {
+    flex: 1;
     padding: 20px;
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
+    align-content: flex-start;
 }
 
 button {
@@ -58,7 +87,19 @@ button:hover {
     opacity: 0.9;
 }
 
-input {
+input,
+select,
+textarea {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+input,
+select {
     width: 100%;
     padding: 10px;
     margin-top: 5px;
@@ -106,6 +147,8 @@ label {
     flex: 1;
 }
 
+/* MODAIS */
+
 .modal {
     position: fixed;
     top: 0;
@@ -138,6 +181,8 @@ label {
 .oculto {
     display: none;
 }
+
+/* TABELAS */
 
 table {
     width: 100%;

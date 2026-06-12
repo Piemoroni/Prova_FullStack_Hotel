@@ -1,28 +1,38 @@
 const url = "http://localhost:3000";
 
 const quartos = [];
-
 let quartoAtual = null;
 
 carregarQuartos();
 
 function carregarQuartos() {
+
     fetch(url + "/quarto/listar")
+
         .then(res => res.json())
+
         .then(data => {
+
             quartos.length = 0;
             quartos.push(...data);
 
             listarQuartos();
+
         })
-        .catch(() => alert("Erro ao conectar com a API"));
+
+        .catch(() => {
+
+            alert("Erro ao conectar com a API");
+
+        });
+
 }
 
 function listarQuartos() {
 
-    const main = document.querySelector("main");
+    const container = document.querySelector("main");
 
-    main.innerHTML = "";
+    container.innerHTML = "";
 
     quartos.forEach(quarto => {
 
@@ -33,34 +43,49 @@ function listarQuartos() {
         card.innerHTML = `
             <h3>Quarto ${quarto.numero}</h3>
 
-            <p><b>Tipo:</b> ${quarto.tipo}</p>
+            <p>
+                <b>Tipo:</b>
+                ${quarto.tipo}
+            </p>
 
             <div class="botoes">
-                <button onclick="abrirReservas(${quarto.id})">
+
+                <button
+                    class="btnReservas"
+                    onclick="abrirReservas(${quarto.id})">
+
                     Ver Reservas
+
                 </button>
 
-                <button class="btnExcluir"
+                <button
+                    class="btnExcluir"
                     onclick="excluirQuarto(${quarto.id})">
+
                     Excluir
+
                 </button>
+
             </div>
         `;
 
-        main.appendChild(card);
+        container.appendChild(card);
 
     });
 
 }
 
-document.querySelector("#formQuarto")
-.addEventListener("submit", function(e){
+document
+.querySelector("#formQuarto")
+.addEventListener("submit", function (e) {
 
     e.preventDefault();
 
     const novoQuarto = {
+
         numero: numero.value,
         tipo: tipo.value
+
     };
 
     fetch(url + "/quarto/cadastrar", {
@@ -75,14 +100,11 @@ document.querySelector("#formQuarto")
 
     })
 
-    .then(res => {
-        if(!res.ok) throw new Error();
-        return res.json();
-    })
+    .then(res => res.json())
 
     .then(() => {
 
-        alert("Quarto cadastrado com sucesso!");
+        alert("Quarto cadastrado!");
 
         formQuarto.reset();
 
@@ -92,13 +114,17 @@ document.querySelector("#formQuarto")
 
     })
 
-    .catch(() => alert("Erro ao cadastrar quarto"));
+    .catch(() => {
+
+        alert("Erro ao cadastrar quarto");
+
+    });
 
 });
 
-function excluirQuarto(id){
+function excluirQuarto(id) {
 
-    if(!confirm("Deseja excluir este quarto?"))
+    if (!confirm("Deseja excluir este quarto?"))
         return;
 
     fetch(url + "/quarto/excluir/" + id, {
@@ -109,43 +135,51 @@ function excluirQuarto(id){
 
     .then(() => {
 
-        alert("Quarto excluído com sucesso!");
+        alert("Quarto excluído!");
 
         carregarQuartos();
 
     })
 
-    .catch(() => alert("Erro ao excluir quarto"));
+    .catch(() => {
+
+        alert("Erro ao excluir quarto");
+
+    });
 
 }
 
-function abrirReservas(id){
+function abrirReservas(id) {
 
     fetch(url + "/quarto/buscar/" + id)
 
-    .then(res => res.json())
+        .then(res => res.json())
 
-    .then(quarto => {
+        .then(quarto => {
 
-        quartoAtual = quarto;
+            quartoAtual = quarto;
 
-        tituloQuarto.innerHTML =
-            "Quarto " + quarto.numero;
+            tituloQuarto.innerHTML =
+                "Quarto " + quarto.numero;
 
-        infoQuarto.innerHTML =
-            "Tipo: " + quarto.tipo;
+            infoQuarto.innerHTML =
+                "Tipo: " + quarto.tipo;
 
-        listarReservas(quarto.reservas || []);
+            listarReservas(quarto.reservas || []);
 
-        modalReservas.classList.remove("oculto");
+            modalReservas.classList.remove("oculto");
 
-    })
+        })
 
-    .catch(() => alert("Erro ao carregar reservas"));
+        .catch(() => {
+
+            alert("Erro ao carregar reservas");
+
+        });
 
 }
 
-function listarReservas(reservas){
+function listarReservas(reservas) {
 
     listaReservas.innerHTML = "";
 
@@ -158,9 +192,17 @@ function listarReservas(reservas){
 
                 <td>${reserva.hospede}</td>
 
-                <td>${reserva.data_entrada.substring(0,10)}</td>
+                <td>
+                    ${new Date(
+                        reserva.data_entrada
+                    ).toLocaleDateString("pt-BR")}
+                </td>
 
-                <td>${reserva.data_saida.substring(0,10)}</td>
+                <td>
+                    ${new Date(
+                        reserva.data_saida
+                    ).toLocaleDateString("pt-BR")}
+                </td>
 
                 <td>
 
@@ -181,25 +223,23 @@ function listarReservas(reservas){
 
 }
 
-function abrirCadastroReserva(){
+function abrirCadastroReserva() {
 
     modalReserva.classList.remove("oculto");
 
 }
 
-document.querySelector("#formReserva")
-.addEventListener("submit", function(e){
+document
+.querySelector("#formReserva")
+.addEventListener("submit", function (e) {
 
     e.preventDefault();
 
     const novaReserva = {
 
         hospede: hospede.value,
-
         data_entrada: dataEntrada.value,
-
         data_saida: dataSaida.value,
-
         quartoId: quartoAtual.id
 
     };
@@ -217,13 +257,17 @@ document.querySelector("#formReserva")
     })
 
     .then(res => {
-        if(!res.ok) throw new Error();
+
+        if (!res.ok)
+            throw new Error();
+
         return res.json();
+
     })
 
     .then(() => {
 
-        alert("Reserva cadastrada com sucesso!");
+        alert("Reserva cadastrada!");
 
         formReserva.reset();
 
@@ -233,13 +277,17 @@ document.querySelector("#formReserva")
 
     })
 
-    .catch(() => alert("Erro ao cadastrar reserva"));
+    .catch(() => {
+
+        alert("Erro ao cadastrar reserva");
+
+    });
 
 });
 
-function excluirReserva(id){
+function excluirReserva(id) {
 
-    if(!confirm("Deseja excluir esta reserva?"))
+    if (!confirm("Deseja excluir esta reserva?"))
         return;
 
     fetch(url + "/reserva/excluir/" + id, {
@@ -250,12 +298,92 @@ function excluirReserva(id){
 
     .then(() => {
 
-        alert("Reserva excluída com sucesso!");
+        alert("Reserva excluída!");
 
-        abrirReservas(quartoAtual.id);
+        if (quartoAtual) {
+
+            abrirReservas(quartoAtual.id);
+
+        } else {
+
+            listarTodasReservas();
+
+        }
 
     })
 
-    .catch(() => alert("Erro ao excluir reserva"));
+    .catch(() => {
+
+        alert("Erro ao excluir reserva");
+
+    });
+
+}
+
+function listarTodasReservas() {
+
+    fetch(url + "/reserva/listar")
+
+        .then(res => res.json())
+
+        .then(data => {
+
+            const container = document.querySelector("main");
+
+            container.innerHTML = "";
+
+            data.forEach(reserva => {
+
+                const card = document.createElement("div");
+
+                card.classList.add("card");
+
+                card.innerHTML = `
+                    <h3>Reserva #${reserva.id}</h3>
+
+                    <p>
+                        <b>Hóspede:</b><br>
+                        ${reserva.hospede}
+                    </p>
+
+                    <p>
+                        <b>Entrada:</b><br>
+                        ${new Date(
+                            reserva.data_entrada
+                        ).toLocaleDateString("pt-BR")}
+                    </p>
+
+                    <p>
+                        <b>Saída:</b><br>
+                        ${new Date(
+                            reserva.data_saida
+                        ).toLocaleDateString("pt-BR")}
+                    </p>
+
+                    <p>
+                        <b>Quarto:</b>
+                        ${reserva.quarto.numero}
+                    </p>
+
+                    <button
+                        class="btnExcluir"
+                        onclick="excluirReserva(${reserva.id})">
+
+                        Excluir
+
+                    </button>
+                `;
+
+                container.appendChild(card);
+
+            });
+
+        })
+
+        .catch(() => {
+
+            alert("Erro ao carregar reservas");
+
+        });
 
 }

@@ -1,51 +1,114 @@
 const prisma = require("../data/prisma");
 
 const cadastrar = async (req, res) => {
-    const data = req.body;
 
-    const item = await prisma.reserva.create({
-        data
-    });
+    try {
 
-    res.json(item).status(201).end();
+        const dados = {
+            hospede: req.body.hospede,
+            data_entrada: new Date(req.body.data_entrada),
+            data_saida: new Date(req.body.data_saida),
+            quartoId: Number(req.body.quartoId)
+        };
+
+        const reserva = await prisma.reserva.create({
+            data: dados
+        });
+
+        res.status(201).json(reserva);
+
+    } catch (err) {
+
+        console.log(err);
+
+        res.status(500).json(err);
+    }
 };
 
 const listar = async (req, res) => {
-    const lista = await prisma.reserva.findMany();
 
-    res.json(lista).status(200).end();
+    const reservas = await prisma.reserva.findMany({
+
+        include: {
+            quarto: true
+        }
+
+    });
+
+    res.status(200).json(reservas);
+
 };
 
 const buscar = async (req, res) => {
-    const { id } = req.params;
-    
-    const item = await prisma.reserva.findUnique({
-        where: { id : Number(id) }
-    });
 
-    res.json(item).status(200).end();
+    try {
+
+        const { id } = req.params;
+
+        const reserva = await prisma.reserva.findUnique({
+
+            where: {
+                id: Number(id)
+            },
+
+            include: {
+                quarto: true
+            }
+
+        });
+
+        res.status(200).json(reserva);
+
+    } catch (err) {
+
+        res.status(500).json(err);
+    }
 };
 
 const atualizar = async (req, res) => {
-    const { id } = req.params;
-    const dados = req.body;
-    
-    const item = await prisma.reserva.update({
-        where: { id : Number(id) },
-        data: dados
-    });
 
-    res.json(item).status(200).end();
+    try {
+
+        const { id } = req.params;
+
+        const reserva = await prisma.reserva.update({
+
+            where: {
+                id: Number(id)
+            },
+
+            data: req.body
+
+        });
+
+        res.status(200).json(reserva);
+
+    } catch (err) {
+
+        res.status(500).json(err);
+    }
 };
 
 const excluir = async (req, res) => {
-    const { id } = req.params;
-    
-    const item = await prisma.reserva.delete({
-        where: { id : Number(id) }
-    });
 
-    res.json(item).status(200).end();
+    try {
+
+        const { id } = req.params;
+
+        const reserva = await prisma.reserva.delete({
+
+            where: {
+                id: Number(id)
+            }
+
+        });
+
+        res.status(200).json(reserva);
+
+    } catch (err) {
+
+        res.status(500).json(err);
+    }
 };
 
 module.exports = {
@@ -54,4 +117,4 @@ module.exports = {
     buscar,
     atualizar,
     excluir
-}
+};
