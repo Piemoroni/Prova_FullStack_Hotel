@@ -9,10 +9,10 @@ const {
     atualizar, 
     excluir } = require("../controllers/quarto.controller");
 
-router.post("/cadastrar", cadastrar); //Testado
-router.get("/listar", listar); //Testado
-router.get("/buscar/:id", buscar); //Testado
-router.put("/atualizar/:id", atualizar); //Testado
-router.delete("/excluir/:id", excluir); //Testado
+router.post("/cadastrar", cadastrar); 
+router.get("/listar", listar); 
+router.get("/buscar/:id", buscar); 
+router.put("/atualizar/:id", atualizar); 
+router.delete("/excluir/:id", excluir); 
 
 module.exports = router;

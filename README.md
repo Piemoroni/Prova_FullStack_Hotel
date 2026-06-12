@@ -2,6 +2,8 @@
 
 Sistema web desenvolvido para gerenciamento de quartos e reservas de hotel, permitindo o cadastro, consulta e exclusão de quartos e reservas através de uma interface web integrada a uma API e banco de dados.
 
+Comentei Professor O script.js para facilitar!
+
 ---
 
 # Funcionalidades

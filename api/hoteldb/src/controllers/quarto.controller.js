@@ -2,7 +2,6 @@ const prisma = require("../data/prisma");
 
 const cadastrar = async (req, res) => {
     try {
-
         const quarto = await prisma.quarto.create({
             data: req.body
         });
@@ -16,9 +15,7 @@ const cadastrar = async (req, res) => {
 
 const listar = async (req, res) => {
     try {
-
         const quartos = await prisma.quarto.findMany();
-
         res.status(200).json(quartos);
 
     } catch (err) {
@@ -28,15 +25,12 @@ const listar = async (req, res) => {
 
 const buscar = async (req, res) => {
     try {
-
         const { id } = req.params;
-
         const quarto = await prisma.quarto.findUnique({
 
             where: {
                 id: Number(id)
             },
-
             include: {
                 reservas: true
             }
@@ -52,9 +46,7 @@ const buscar = async (req, res) => {
 
 const atualizar = async (req, res) => {
     try {
-
         const { id } = req.params;
-
         const quarto = await prisma.quarto.update({
 
             where: {
@@ -73,9 +65,7 @@ const atualizar = async (req, res) => {
 };
 
 const excluir = async (req, res) => {
-
     const { id } = req.params;
-
     await prisma.reserva.deleteMany({
         where: {
             quartoId: Number(id)
@@ -89,7 +79,6 @@ const excluir = async (req, res) => {
     });
 
     res.status(200).json(quarto);
-
 };
 
 module.exports = {
