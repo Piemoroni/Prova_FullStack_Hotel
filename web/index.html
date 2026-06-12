@@ -1,56 +1,32 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hotel Reservas</title>
-
+    <title>Hotel DB</title>
     <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-
     <header>
-
-        <h1>Hotel Reservas</h1>
-
-        <button onclick="modalQuarto.classList.remove('oculto')">
-            Novo Quarto
-        </button>
-
+        <h1>Hotel DB</h1>
+        <button onclick="modalQuarto.classList.remove('oculto')"> Novo Quarto </button>
     </header>
 
     <div class="container">
-
         <aside>
-
             <h2>Menu</h2>
-
-            <button onclick="carregarQuartos()">
-                Quartos
-            </button>
-
-            <button onclick="listarTodasReservas()">
-                Reservas
-            </button>
-
+            <button onclick="carregarQuartos()"> Quartos </button>
+            <button onclick="listarTodasReservas()"> Reservas </button>
         </aside>
 
         <main id="listaQuartos">
-
         </main>
 
     </div>
 
-    <!-- CADASTRO DE QUARTO -->
-
     <div id="modalQuarto" class="modal oculto">
-
         <div class="janela">
-
             <h2>Cadastro de Quarto</h2>
-
             <form id="formQuarto">
 
                 <label>Número do Quarto</label>
@@ -59,43 +35,25 @@
                 <label>Tipo do Quarto</label>
                 <input type="text" id="tipo" required>
 
-                <br><br>
+                <br>
 
-                <button type="button"
-                    onclick="modalQuarto.classList.add('oculto')">
-                    Cancelar
-                </button>
-
-                <button type="submit">
-                    Cadastrar
-                </button>
-
+                <button type="button" onclick="modalQuarto.classList.add('oculto')"> Cancelar </button>
+                <button type="submit"> Cadastrar </button>
             </form>
-
         </div>
-
     </div>
 
-    <!-- RESERVAS DO QUARTO -->
-
     <div id="modalReservas" class="modal oculto">
-
         <div class="janela janelaGrande">
-
             <h2 id="tituloQuarto"></h2>
-
             <p id="infoQuarto"></p>
 
-            <button onclick="abrirCadastroReserva()">
-                Nova Reserva
-            </button>
+            <button onclick="abrirCadastroReserva()"> Nova Reserva </button>
 
-            <br><br>
+            <br>
 
             <table>
-
                 <thead>
-
                     <tr>
                         <th>ID</th>
                         <th>Hóspede</th>
@@ -103,33 +61,20 @@
                         <th>Saída</th>
                         <th>Ações</th>
                     </tr>
-
                 </thead>
-
                 <tbody id="listaReservas">
-
                 </tbody>
-
             </table>
 
             <br>
 
-            <button onclick="modalReservas.classList.add('oculto')">
-                Fechar
-            </button>
-
+            <button onclick="modalReservas.classList.add('oculto')"> Fechar </button>
         </div>
-
     </div>
 
-    <!-- CADASTRO DE RESERVA -->
-
     <div id="modalReserva" class="modal oculto">
-
         <div class="janela">
-
             <h2>Cadastro de Reserva</h2>
-
             <form id="formReserva">
 
                 <label>Nome do Hóspede</label>
@@ -141,25 +86,15 @@
                 <label>Data de Saída</label>
                 <input type="date" id="dataSaida" required>
 
-                <br><br>
+                <br>
 
-                <button type="button"
-                    onclick="modalReserva.classList.add('oculto')">
-                    Cancelar
-                </button>
-
-                <button type="submit">
-                    Cadastrar Reserva
-                </button>
-
+                <button type="button" onclick="modalReserva.classList.add('oculto')"> Cancelar </button>
+                <button type="submit"> Cadastrar Reserva </button>
             </form>
-
         </div>
-
     </div>
 
     <script src="script.js"></script>
 
 </body>
-
 </html>

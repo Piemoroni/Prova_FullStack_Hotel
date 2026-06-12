@@ -204,8 +204,12 @@ Inspiração Site Recitas - Consumo da API
 
 ![Cadastro de Quarto](./wireframes/quarto.png)
 
-
 ## Tela de Reservas
+
+![Cadastro de Quarto](./wireframes/tela.png)
+
+
+## Lista de Reservas
 
 ![Tela de Reservas](./wireframes/reserva.png)
 
@@ -239,6 +243,7 @@ Inspiração Site Recitas - Consumo da API
 | DELETE | /reserva/excluir/:id |
 
 ---
+
 
 # Desenvolvedora
 
