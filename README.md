@@ -177,13 +177,19 @@ index.html
 
 ![Inspiração 1](./wireframes/insp1.png)
 
-Inspiração Dada Pelo Professor 
+Inspiração Dada Pelo Professor - Cores
 
 ![Inspiração 2](./wireframes/insp2.png)
 
-Inspiração Site Locadora de Filmes
+Inspiração Site Locadora de Filmes - Cadastrar
 
-![Inspiração 3](./wireframes/inspiracao03.png)
+![Inspiração 3](./wireframes/insp3.png)
+
+Inpiração Site Spotify - Menu Lateral
+
+![Inspiração 4](./wireframes/insp4.png)
+
+Inspiração Site Recitas - Consumo da API
 
 ---
 
